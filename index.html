@@ -480,14 +480,14 @@
     <p id="winner" class="text-xl font-bold mt-4"></p>
 
     <script>
-      const diceMap = {
-        1: "rotateX(0deg) rotateY(0deg)", // Face 1
-        2: "rotateX(0deg) rotateY(90deg)", // Face 2
-        3: "rotateX(0deg) rotateY(180deg)", // Face 3
-        4: "rotateX(0deg) rotateY(-90deg)", // Face 4
-        5: "rotateX(90deg) rotateY(0deg)", // Face 5
-        6: "rotateX(-90deg) rotateY(0deg)", // Face 6
-      };
+     const diceMap = {
+  1: "rotateX(0deg) rotateY(0deg)",    // Face 1
+  2: "rotateY(-90deg) rotateX(0deg)",   // Face 2
+  3: "rotateY(180deg) rotateX(0deg)",   // Face 3
+  4: "rotateY(90deg) rotateX(0deg)",    // Face 4
+  5: "rotateX(-90deg) rotateY(0deg)",   // Face 5
+  6: "rotateX(90deg) rotateY(0deg)",    // Face 6
+};
 
       document.getElementById("roll-dice").addEventListener("click", () => {
         const scores = [];
@@ -497,19 +497,23 @@
           scores.push(value);
           dice.style.transform = diceMap[value]; // Rotate dice
         }
+const maxScore = Math.max(...scores);
 
-        // Determine the winner
-        const maxScore = Math.max(...scores);
-        const winners = scores
-          .map((score, index) =>
-            score === maxScore ? `Player ${index + 1}` : null
-          )
-          .filter((player) => player !== null);
+// Find all players who have the highest score
+const winners = [];
+for (let i = 0; i < scores.length; i++) {
+  if (scores[i] === maxScore) {
+    winners.push(i + 1);
+  }
+}
 
-        document.getElementById("winner").textContent =
-          winners.length > 1
-            ? `It's a tie between ${winners.join(" & ")}`
-            : `${winners[0]} Wins!`;
+// If only one player has the highest score, they win
+if (winners.length === 1) {
+  document.getElementById("winner").textContent = `Player ${winners[0]} Wins!`;
+} else {
+  document.getElementById("winner").textContent = `It's a tie between ${winners.map(i => `Player ${i}`).join(" & ")}`;
+}
+
       });
     </script>
   </body>
