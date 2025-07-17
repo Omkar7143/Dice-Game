@@ -12,7 +12,10 @@ A fun and interactive 3D dice game for 4 players built using HTML, Tailwind CSS,
 
 ## 🚀 Demo
 
-![Dice Game Screenshot](./screenshot.png) <!-- Replace with actual screenshot if available -->
+<img width="856" height="822" alt="image" src="https://github.com/user-attachments/assets/f9d82f6b-771c-47f9-aac3-eb66f2dc448b" />
+
+
+
 
 ## 🛠️ Technologies Used
 
